@@ -16,6 +16,8 @@ const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const [userLoggedInData, setUserLoggedInData] = useState(user);
   const navigate = useNavigate();
+  const registerUser = () => {};
+
   const login = async (username, password) => {
     const loginBody = { username, password };
     try {
