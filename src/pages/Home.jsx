@@ -3,6 +3,7 @@ const Home = () => {
     <div>
       <h1 className="text-3xl font-bold">University Management System</h1>
       <div className="flex md:justify-between">
+        
         <img
           src="/public/2204_w037_n003_316b_p1_316.jpg"
           alt=""
