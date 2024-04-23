@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Select from "react-select";
+import { v4 as uuidv4 } from "uuid";
+import useRegisterUser from "../hooks/useRegisterUser";
 const Register = () => {
   const [userData, setUserData] = useState({
     userFirstName: "",
@@ -18,6 +20,7 @@ const Register = () => {
   const options = [
     { value: "student", label: "Student" },
     { value: "teacher", label: "Teacher" },
+    { value: "admin", label: "Admin" },
   ];
   const genderOptions = [
     { value: "male", label: "Male" },
@@ -40,7 +43,13 @@ const Register = () => {
       [name]: value,
     }));
   };
-  const handleRegister = () => {};
+  const handleRegister = async (e) => {
+    try {
+      await useRegisterUser(userData);
+    } catch (error) {
+      console.error("Error during registration process:", error);
+    }
+  };
   return (
     <div>
       <div className="border-4 mx-10 my-10  md:w-5/6 md:mx-auto md:my-10 border-[#06283D] rounded-xl ">
