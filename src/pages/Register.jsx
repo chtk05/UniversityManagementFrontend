@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Select from "react-select";
+import { v4 as uuidv4 } from "uuid";
+import useRegisterUser from "../hooks/useRegisterUser";
 const Register = () => {
   const [userData, setUserData] = useState({
     userFirstName: "",
@@ -13,11 +15,11 @@ const Register = () => {
     userRole: "",
     userGender: "",
   });
-  const [selectedGender, setSelectGender] = useState(null);
-  const [selectedRole, setSelectRole] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const options = [
     { value: "student", label: "Student" },
     { value: "teacher", label: "Teacher" },
+    { value: "admin", label: "Admin" },
   ];
   const genderOptions = [
     { value: "male", label: "Male" },
@@ -25,12 +27,16 @@ const Register = () => {
   ];
 
   const handleGenderChange = (selectedOption) => {
-    setSelectGender(selectedOption);
-    console.log(selectedOption);
+    setUserData((prevState) => ({
+      ...prevState,
+      userGender: selectedOption.value,
+    }));
   };
   const handleRoleChange = (selectedOption) => {
-    setSelectRole(selectedOption);
-    console.log(selectedOption);
+    setUserData((prevState) => ({
+      ...prevState,
+      userRole: selectedOption.value,
+    }));
   };
 
   const handleInputChange = (e) => {
@@ -40,7 +46,29 @@ const Register = () => {
       [name]: value,
     }));
   };
-  const handleRegister = () => {};
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await useRegisterUser(userData);
+    } catch (error) {
+      console.error("Error during registration process:", error);
+    } finally {
+      setIsLoading(false);
+      setUserData({
+        userFirstName: "",
+        userLastName: "",
+        username: "",
+        password: "",
+        userEmail: "",
+        userTelephone: "",
+        userAddress: "",
+        userFaculty: "",
+        userRole: "",
+        userGender: "",
+      });
+    }
+  };
   return (
     <div>
       <div className="border-4 mx-10 my-10  md:w-5/6 md:mx-auto md:my-10 border-[#06283D] rounded-xl ">
@@ -181,7 +209,9 @@ const Register = () => {
                 options={options}
                 autoFocus={true}
                 className="rounded-md"
-                value={selectedRole}
+                value={options.find(
+                  (option) => option.value === userData.userRole
+                )}
                 onChange={handleRoleChange}
               />
             </div>
@@ -193,7 +223,9 @@ const Register = () => {
                 options={genderOptions}
                 autoFocus={true}
                 className="rounded-md"
-                value={selectedGender}
+                value={genderOptions.find(
+                  (option) => option.value === userData.userGender
+                )}
                 onChange={handleGenderChange}
               />
             </div>
@@ -201,10 +233,10 @@ const Register = () => {
 
           <div className="flex items-center justify-center ">
             <button
-              className="mb-4 w-52 md:w-60 md:mb-5 bg-[#1363DF] hover:bg-[#FF9F9F] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="mb-4 w-52 md:w-60 md:mb-5 bg-[#1363DF] hover:bg-[#47B5FF] hover:text-[#DFF6FF] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Submit
+              {isLoading ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>
