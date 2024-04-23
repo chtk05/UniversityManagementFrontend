@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import toast, { Toaster } from "react-hot-toast";
 import Login from "./pages/Login";
 import Navbar from "./component/Navbar";
+import DashBoard from "./pages/DashBoard";
 
 axios.defaults.baseURL = "http://localhost:8080/";
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<DashBoard />} />
       </Routes>
     </React.Fragment>
   );

@@ -21,7 +21,10 @@ const Navbar = () => {
         {isLoggedIn ? (
           <div className="flex flex-row gap-4  font-semibold px-2 mt-1">
             {userDetails && userDetails.role === "admin" && (
-              <NavLink className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]">
+              <NavLink
+                to="/dashboard"
+                className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]"
+              >
                 Dashboard
               </NavLink>
             )}
