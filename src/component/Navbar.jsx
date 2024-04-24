@@ -29,9 +29,30 @@ const Navbar = () => {
               </NavLink>
             )}
             {["student"].includes(userDetails && userDetails.role) && (
-              <NavLink className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]">
-                Courses
-              </NavLink>
+              <>
+                <NavLink
+                  to="/enrollment"
+                  className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]"
+                >
+                  Enroll
+                </NavLink>
+                <NavLink
+                  to="/indicourse"
+                  className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]"
+                >
+                  Courses
+                </NavLink>
+              </>
+            )}
+            {["teacher"].includes(userDetails && userDetails.role) && (
+              <>
+                <NavLink
+                  to="/teacher"
+                  className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]"
+                >
+                  Course
+                </NavLink>
+              </>
             )}
             <p
               onClick={logout}
@@ -41,12 +62,15 @@ const Navbar = () => {
             </p>
           </div>
         ) : (
-          <NavLink
-            to="/login"
-            className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]"
-          >
-            Login
-          </NavLink>
+          <div className="flex flex-row gap-4  font-semibold px-2 mt-1">
+            {" "}
+            <NavLink
+              to="/login"
+              className="bg-[#DFF6FF] text-[#1363DF] p-2 border rounded-lg hover:bg-[#47B5FF] hover:text-[#DFF6FF]"
+            >
+              Login
+            </NavLink>
+          </div>
         )}
       </div>
     </nav>

@@ -49,8 +49,8 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-4 border-8 mx-10 my-10 border-double md:w-3/6 md:mx-auto md:my-10 border-[#E97777] rounded-xl ">
-      <h1 className="p-2 text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white border-b-2 border-[#E97777] md:p-4">
+    <div className="mt-4 border-8 mx-10 my-10 border-double md:w-3/6 md:mx-auto md:my-10 border-[#1363DF] rounded-xl ">
+      <h1 className="p-2 text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white border-b-2 border-[#1363DF] md:p-4">
         Sign in
       </h1>
       <Toaster />
@@ -89,7 +89,7 @@ const Login = () => {
         </div>
         <div className="flex items-center justify-center ">
           <button
-            className="mb-4 md:mb-5 bg-[#FF7C7C] hover:bg-[#FF9F9F] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="mb-4 md:mb-5 bg-[#1363DF] hover:bg-[#DFF6FF] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
             disabled={isLoading}
           >
