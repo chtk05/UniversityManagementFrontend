@@ -33,7 +33,6 @@ const AuthProvider = ({ children }) => {
     }
   };
   const logout = () => {
-    window.location.reload();
     localStorage.clear(),
       setUserLoggedInData(null),
       setIsLoggedIn(false),
